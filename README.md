@@ -7,7 +7,8 @@ Windows版Minecraft BEとGoogle日本語入力の相性が悪いのでそれを�
 # 使い方
 [Release](https://github.com/ryuya0124/Minecraft_Change_IME/releases)から落とします。<br>
 **Minecraft_Change_IME.exe** を任意のディレクトリに配置して起動します。<br>
-二重起動は塞いであるので安心！<br><br>
+~~二重起動は塞いであるので安心！~~ のはずだった。<br>
+何故かゾンビ気味です。v1.1でちょっとはマシにしました。<br>
 起動しているかはシステムトレイで確認できます。<br>
 ![image](https://github.com/user-attachments/assets/b5524805-104a-4c03-83ed-5d8118528b85)<br>
 絶賛アイコン募集中です！！！！。<br>
