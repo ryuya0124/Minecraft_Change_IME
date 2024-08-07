@@ -1,2 +1,2 @@
-gcc -o Minecraft_Change_IME main.cpp  -mwindows
+g++ -o Minecraft_Change_IME main.cpp  -mwindows
 pause
