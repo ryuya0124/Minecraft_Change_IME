@@ -10,6 +10,7 @@
 NOTIFYICONDATA nid;
 BOOL wasActive = FALSE;
 HANDLE hMutex;
+HANDLE hThread; // スレッドのハンドルを追加
 
 void sendKeyCombination(WORD key1, WORD key2, WORD key3) {
     INPUT inputs[6] = {0};
@@ -76,12 +77,10 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             break;
         case WM_COMMAND:
             if (LOWORD(wParam) == ID_TRAY_EXIT) {
-                removeTrayIcon();
                 PostQuitMessage(0);
             }
             break;
         case WM_DESTROY:
-            removeTrayIcon();
             PostQuitMessage(0);
             break;
     }
@@ -141,7 +140,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     createTrayIcon(hwnd);
 
-    CreateThread(NULL, 0, monitorThread, NULL, 0, NULL);
+    hThread = CreateThread(NULL, 0, monitorThread, NULL, 0, NULL);
+    if (!hThread) {
+        MessageBox(NULL, TEXT("Failed to create monitoring thread."), TEXT("Error"), MB_OK | MB_ICONERROR);
+        return 1;
+    }
 
     MSG msg;
     while (GetMessage(&msg, NULL, 0, 0)) {
@@ -149,9 +152,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         DispatchMessage(&msg);
     }
 
+    // プログラム終了時にスレッドを終了
+    TerminateThread(hThread, 0);
+    CloseHandle(hThread);
+
     // プログラム終了時にミューテックスを解放
     ReleaseMutex(hMutex);
     CloseHandle(hMutex);
+
+    removeTrayIcon();
 
     return 0;
 }
