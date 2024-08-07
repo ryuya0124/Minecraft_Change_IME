@@ -1,7 +1,5 @@
 # Minecraft_Change_IME
 
-# 安定性調整中
-
 # 説明
 Windows版Minecraft BEとGoogle日本語入力の相性が悪いのでそれを回避するものです。<br>
 自動的に他のIMEへ切り替えをする仕組みなので、根本的な修正にはなりません。
