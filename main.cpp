@@ -96,14 +96,15 @@ DWORD WINAPI monitorThread(LPVOID lpParam) {
         hwnd = GetForegroundWindow();
         if (hwnd) {
             GetWindowTextA(hwnd, windowTitle, sizeof(windowTitle));
+
             if (strcmp(windowTitle, TARGET_WINDOW_TITLE) == 0) {
                 if (!wasActive) {
-                    sendKeyCombination(VK_MENU, VK_SHIFT, '1');
+                    sendKeyCombination(VK_MENU, VK_SHIFT, '2'); // Alt + Shift + 2
                     wasActive = TRUE;
                 }
             } else {
                 if (wasActive) {
-                    sendKeyCombination(VK_MENU, VK_SHIFT, '2');
+                    sendKeyCombination(VK_MENU, VK_SHIFT, '1'); // Alt + Shift + 1
                     wasActive = FALSE;
                 }
             }
