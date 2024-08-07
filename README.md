@@ -15,5 +15,5 @@ Windows版Minecraft BEとGoogle日本語入力の相性が悪いのでそれを�
 
 以下のショートカットキーを設定しないと動作しません。
 ![image](https://github.com/user-attachments/assets/1899886b-e475-4f29-ac74-1d352d51cd47)<br>
-Google日本語入力以外のIMEはなんでもいいです。
+Microsoft IME以外のIMEはなんでもいいです。
 
