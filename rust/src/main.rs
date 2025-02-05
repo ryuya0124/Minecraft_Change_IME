@@ -1,16 +1,17 @@
-use std::{thread, time::Duration, ptr};
+use std::{thread, time::Duration};
 use windows::Win32::{
-    Foundation::HWND,
     UI::{
-        Input::KeyboardAndMouse::{INPUT, INPUT_0, INPUT_KEYBOARD, KEYBDINPUT, KEYEVENTF_KEYUP, SendInput, VK_MENU},
-        WindowsAndMessaging::{FindWindowA, GetForegroundWindow, GetWindowTextA},
+        Input::KeyboardAndMouse::{
+            INPUT, INPUT_0, INPUT_KEYBOARD, KEYBDINPUT, KEYEVENTF_KEYUP, SendInput, VIRTUAL_KEY, VK_MENU, VK_LSHIFT
+        },
+        WindowsAndMessaging::{GetForegroundWindow, GetWindowTextA},
     },
 };
 
 const TARGET_WINDOW_TITLE: &str = "Minecraft";
 const CHECK_INTERVAL: Duration = Duration::from_millis(100);
 
-fn send_key_combination(key1: u16, key2: u16, key3: u16) {
+fn send_key_combination(key1: VIRTUAL_KEY, key2: VIRTUAL_KEY, key3: VIRTUAL_KEY) {
     let inputs = vec![
         INPUT {
             r#type: INPUT_KEYBOARD,
@@ -43,7 +44,7 @@ fn send_key_combination(key1: u16, key2: u16, key3: u16) {
 fn get_foreground_window_title() -> Option<String> {
     unsafe {
         let hwnd = GetForegroundWindow();
-        if hwnd.0 == 0 {
+        if hwnd.0.is_null() { 
             return None;
         }
         let mut buffer = [0u8; 256];
@@ -62,12 +63,12 @@ fn main() {
         if let Some(title) = get_foreground_window_title() {
             if title == TARGET_WINDOW_TITLE {
                 if !was_active {
-                    send_key_combination(VK_MENU.0 as u16, 0xA0, 0x32); // Alt + Shift + 2
+                    send_key_combination(VK_MENU, VK_LSHIFT, VIRTUAL_KEY(0x32)); // Alt + Shift + 2
                     was_active = true;
                 }
             } else {
                 if was_active {
-                    send_key_combination(VK_MENU.0 as u16, 0xA0, 0x31); // Alt + Shift + 1
+                    send_key_combination(VK_MENU, VK_LSHIFT, VIRTUAL_KEY(0x31)); // Alt + Shift + 1
                     was_active = false;
                 }
             }
