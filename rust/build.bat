@@ -2,7 +2,7 @@
 setlocal
 
 :: プロジェクト名
-set PROJECT_NAME=rust
+set PROJECT_NAME=Minecraft_Change_IME_for_Rust
 
 echo ビルド開始...
 cargo build --release
