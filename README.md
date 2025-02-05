@@ -17,3 +17,10 @@ Windows版Minecraft BEとGoogle日本語入力の相性が悪いのでそれを�
 ![image](https://github.com/user-attachments/assets/1899886b-e475-4f29-ac74-1d352d51cd47)<br>
 Microsoft IME以外のIMEはなんでもいいです。
 
+# Rust版(ゾンビ解消できる気がしなかったから)
+まだ動かないよ<br>
+このライブラリを入れてるよ<br>
+```
+cargo add tray-icon
+cargo add muda
+```

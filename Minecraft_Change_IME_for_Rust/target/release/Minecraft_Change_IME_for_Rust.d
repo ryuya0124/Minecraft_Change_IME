@@ -1,0 +1,1 @@
+C:\Users\ryuya\Downloads\Minecraft_Change_IME\Minecraft_Change_IME_for_Rust\target\release\Minecraft_Change_IME_for_Rust.exe: C:\Users\ryuya\Downloads\Minecraft_Change_IME\Minecraft_Change_IME_for_Rust\src\main.rs
